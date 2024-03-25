@@ -37,7 +37,12 @@ def create_bubble(game_settings, screen, bubbles):
     new_bubble = Bubble(screen, game_settings)
     bubbles.add(new_bubble)
 
-def update_screen(game_settings, screen, player, bubbles):
+def update_bubbles(player, bubbles):
+    hitted_bubble = pygame.sprite.spritecollideany(player, bubbles)
+    if hitted_bubble != None:
+        hitted_bubble.kill()
+
+def update_screen(game_settings, screen, player, bubbles, clock):
     """Update image on the screen and draw new screen"""
 
     # add screen background
@@ -47,5 +52,7 @@ def update_screen(game_settings, screen, player, bubbles):
     # add bubble to screen
     for bubble in bubbles:
         bubble.blit_me()
+    # game rate is 30 frames per second
+    clock.tick(30)
     # display the last screen
     pygame.display.flip()

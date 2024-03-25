@@ -35,13 +35,12 @@ def run_game():
     #Create group to hold bubbles
     bubbles = pygame.sprite.Group()
 
-    # Run until the user asks ti quit
-    running = True
-    while running:
+    # Run until the user asks to quit
+    while True:
         gf.check_events(gm_settings, screen, player, bubbles, stats, play_button)
         if stats.game_active:
             player.update()
-            gf.update_bubbles(player, bubbles, stats, sb)
+            gf.update_bubbles(player, bubbles, stats, sb, gm_settings)
             bubbles.update()
         else:
             bubbles.empty()

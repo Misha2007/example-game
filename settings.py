@@ -10,3 +10,5 @@ class Settings:
 
         self.bubble_min_r = 10
         self.bubble_min_r = 50
+
+        self.bonus_score = 1000

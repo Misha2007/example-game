@@ -14,14 +14,18 @@ def run_game():
     screen = pygame.display.set_mode([gm_settings.screen_width, gm_settings.screen_height])
     pygame.display.set_caption(gm_settings.caption)
 
-    """Initialize player"""
+    #Instantiate player
     player = Player(screen)
+
+    #Create group to hold bubbles
+    bubbles = pygame.sprite.Group()
 
     # Run until the user asks ti quit
     running = True
     while running:
-        gf.check_events(player)
+        gf.check_events(gm_settings, screen, player, bubbles)
         player.update()
-        gf.update_screen(gm_settings, screen, player)
+        bubbles.update()
+        gf.update_screen(gm_settings, screen, player, bubbles)
 
 run_game()

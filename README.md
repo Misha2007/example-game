@@ -28,5 +28,5 @@ Developed by: Mykhailo Drogovoz
 Contact: mykhailo.drogovoz@voco.ee
 Resources
 Pygame Documentation: [Pygame Documentation](https://www.pygame.org/docs/)
-Python Official Website: [Python Website] (https://www.python.org/)
+Python Official Website: [Python Website](https://www.python.org/)
 Siseveeb: https://siseveeb.voco.ee/

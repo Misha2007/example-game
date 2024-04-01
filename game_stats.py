@@ -12,3 +12,7 @@ class GameStats():
         self.score = 0
         self.level = 1
         self.bonus = 0
+        with open('record.txt', 'r') as file:
+            # Read the single line from the file
+            self.record = file.readline().strip()
+            print(self.record)

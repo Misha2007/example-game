@@ -31,7 +31,7 @@ def check_events(game_settings, screen, player, bubbles, stats, play_button):
                 if event.key == pygame.K_DOWN:
                     player.moving_down = False
             elif event.type == ADDBUBBLE:
-                create_bubble(game_settings, screen, bubbles)
+                create_bubble(game_settings, screen, bubbles, stats)
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
                 check_play_button(stats, play_button, mouse_x, mouse_y)
@@ -40,8 +40,8 @@ def check_play_button(stats, play_button, mouse_x, mouse_y):
     if play_button.rect.collidepoint(mouse_x, mouse_y):
         stats.game_active = True
 
-def create_bubble(game_settings, screen, bubbles):
-    new_bubble = Bubble(screen, game_settings)
+def create_bubble(game_settings, screen, bubbles, game_stats):
+    new_bubble = Bubble(screen, game_settings, game_stats)
     bubbles.add(new_bubble)
 
 def update_bubbles(player, bubbles, stats, sb, game_settings):
@@ -49,6 +49,12 @@ def update_bubbles(player, bubbles, stats, sb, game_settings):
     if hitted_bubble != None:
         stats.score += hitted_bubble.bubble_radius
         sb.prepare_score()
+        if int(stats.record) < stats.score:
+            stats.record = stats.score
+            sb.prepare_record()
+            with open('record.txt', 'w') as file:
+                # Write the string to the file
+                file.write(str(stats.record))
         # increase level
         if (int(stats.score / game_settings.bonus_score)) > stats.bonus:
             stats.level += 1

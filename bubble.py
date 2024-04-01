@@ -4,7 +4,7 @@ class Bubble(pygame.sprite.Sprite):
     """Class of bubble object"""
 
 
-    def __init__(self, screen, game_settings):
+    def __init__(self, screen, game_settings, game_stats):
         """Initialize bubble"""
         super(Bubble, self).__init__()
 
@@ -33,7 +33,7 @@ class Bubble(pygame.sprite.Sprite):
                     random.randint(0, game_settings.screen_height),
                 )
             )
-        self.speed = random.randint(1, 5)
+        self.speed = random.randint(1, 5) * game_stats.level
 
     def update(self):
         self.rect.move_ip(-self.speed, 0)
